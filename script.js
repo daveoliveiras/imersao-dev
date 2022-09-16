@@ -76,9 +76,10 @@ var albuns = ["https://upload.wikimedia.org/wikipedia/pt/3/33/Audioslave_-_Audio
 
 var linhas2 = albuns.length;
 
+/* COMENTADO
 for(var i = 0; i < linhas2; i++){ // Inicialização, condição e expressão final
     document.write("<img src='" + albuns[i] + "'/>");
-}
+}*/
 
 /*var x = 0;
 
@@ -90,3 +91,95 @@ while(x < linhas){
 /*document.write("<p>" + arrayAlbuns[3] + "</p>");
 document.write("<p>" + arrayAlbuns[1] + "</p>");
 document.write("<p>" + arrayAlbuns[2] + "</p>");*/
+
+/* //  //  //  //  //  //  //  //  // */
+
+function addAlbum(){
+
+    var caminhoAlbum = document.getElementById("caminhoImg").value;
+
+    if(caminhoAlbum.endsWith(".jpg")) // endsWith, não tem muito o que explicar, mas é legal
+        listarAlbums(caminhoAlbum);
+    else{
+        alert("inválido amigo");
+        console.error("inválido amigo"); // .error, não tem muito o que explicar também
+    }
+    document.getElementById("caminhoImg").value = null; // Limpando o input depois de clicar no botão
+}
+
+
+function listarAlbums(url){ // Função com parâmetro
+    var elementoAlbum = "<img src='" + url + "'/>";
+    var listaAlbums = document.getElementById("listaAlbums");
+    listaAlbums.innerHTML =
+        listaAlbums.innerHTML + elementoAlbum; //Aqui é como se fosse um "i++", pra não mostrar apenas 1 filme
+}
+
+/* //  //  //  //  //  //  //  //  // */
+
+var camila = { // {} para objetos
+    nome: "Camila",
+    vitorias:0,
+    empates:0,
+    derrotas:0,
+    pontos:0
+}
+
+var davi = {
+    nome: "Davi",
+    vitorias:0,
+    empates:0,
+    derrotas:0,
+    pontos:0
+}
+
+var jogadores = [camila, davi];
+
+function calculaPontos(jogador){
+    var pontos = (jogador.vitorias * 3) + (jogador.empates);
+    jogador.pontos = pontos;    
+}
+
+function addVitoria(indice){
+    var jogador = jogadores[indice];
+    jogador.vitorias++; // ++ serve aqui também
+    calculaPontos(jogador);
+    jogadorHtml(jogadores);//Não entendi por que ele atualiza ao invés de acrescentar os jogadores na lista de novo
+}
+
+function addEmpate(indice){
+    var jogador = jogadores[indice];
+    jogador.empates = jogador.empates + 1;
+    calculaPontos(jogador);
+    jogadorHtml(jogadores);
+}
+
+function addDerrota(indice){
+    var jogador = jogadores[indice];
+    jogador.derrotas = jogador.derrotas + 1;
+    calculaPontos(jogador);
+    jogadorHtml(jogadores);
+}
+
+function jogadorHtml(jogadores){
+    var elemento = "";
+
+    for(var i = 0; i < jogadores.length; i++){
+        elemento += "<tr>" // += é utilizado para atribuir a uma variável o valor desta variável mais algo .
+        elemento +=    "<td>" + jogadores[i].nome + "</td>"
+        elemento +=    "<td>" + jogadores[i].vitorias + "</td>"
+        elemento +=    "<td>" + jogadores[i].empates + "</td>"
+        elemento +=    "<td>" + jogadores[i].derrotas + "</td>"
+        elemento +=    "<td>" + jogadores[i].pontos + "</td>"
+        elemento +=    "<td><button onclick='addVitoria("+i+")'>V</button></td>"
+        elemento +=    "<td><button onclick='addEmpate("+i+")'>E</button></td>"
+        elemento +=    "<td><button onclick='addDerrota("+i+")'>D</button></td>"                       
+        elemento += "</tr>"
+    }
+
+    var ranking = document.getElementById("ranking"); //ID do tbody
+    
+    ranking.innerHTML = elemento;
+}
+
+jogadorHtml(jogadores);
