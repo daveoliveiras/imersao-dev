@@ -98,19 +98,24 @@ function Jogar(){
     var resultado = document.getElementById("resultados");
     var reload = document.getElementById("butao");
 
-    var pessoa = cartaPessoa.atributos[atributoSelecionado];
-    var maquina = cartaMaquina.atributos[atributoSelecionado];
+    if(atributoSelecionado == null)
+        alert("Selecione um atributo");
+    else{
 
-    if(pessoa>maquina)
-        resultado.innerHTML = "Ganhou";
-    else if (pessoa<maquina)
-        resultado.innerHTML = "Perdes-te";
-    else    
-        resultado.innerHTML = "Empatas-te";
+        var pessoa = cartaPessoa.atributos[atributoSelecionado];
+        var maquina = cartaMaquina.atributos[atributoSelecionado];
 
-    console.log(cartaMaquina);
+        if(pessoa>maquina)
+            resultado.innerHTML = "Ganhou";
+        else if (pessoa<maquina)
+            resultado.innerHTML = "Perdes-te";
+        else    
+            resultado.innerHTML = "Empatas-te";
 
-    reload.innerHTML = "<input type='button' value='tentar de novo' onclick='recarregaR()'/>";
+        console.log(cartaMaquina);
+
+        reload.innerHTML = "<input type='button' value='tentar de novo' onclick='recarregaR()'/>";
+    }
 }
 
 function recarregaR(){
