@@ -180,6 +180,10 @@ function jogadorHtml(jogadores){
     var ranking = document.getElementById("ranking"); //ID do tbody
     
     ranking.innerHTML = elemento;
+    //document.write(elemento);
 }
 
 jogadorHtml(jogadores);
+
+/* //  //  //  //  //  //  //  //  // */
+
