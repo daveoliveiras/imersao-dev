@@ -96,6 +96,7 @@ function Selecionar(){
 function Jogar(){
     var atributoSelecionado = Selecionar();
     var resultado = document.getElementById("resultados");
+    var reload = document.getElementById("butao");
 
     var pessoa = cartaPessoa.atributos[atributoSelecionado];
     var maquina = cartaMaquina.atributos[atributoSelecionado];
@@ -108,6 +109,12 @@ function Jogar(){
         resultado.innerHTML = "Empatas-te";
 
     console.log(cartaMaquina);
+
+    reload.innerHTML = "<input type='button' value='tentar de novo' onclick='recarregaR()'/>";
+}
+
+function recarregaR(){
+    window.location.reload(true);
 }
 
 var cartaMaquina;
